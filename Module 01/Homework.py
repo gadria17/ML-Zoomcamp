@@ -8,7 +8,7 @@ print(pandas_version)
 
 pd.read_csv('/Users/adriagiliriera/PycharmProjects/Helloworld/ML-Zoomcamp/Module 01/car_fuel_efficiency_2026.csv')
 
-
+#TODO complete the exercise
 
 
 
