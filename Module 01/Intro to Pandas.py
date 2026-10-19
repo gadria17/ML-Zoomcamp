@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 
+#First way of creating a DataFrame: list of lists of data + column index (another list)
 data = [
     ['Nissan', 'Stanza', 1991, 138, 4, 'MANUAL', 'sedan', 2000],
     ['Hyundai', 'Sonata', 2017, None, 4, 'AUTOMATIC', 'Sedan', 27150],
@@ -17,7 +18,8 @@ columns = [
 df = pd.DataFrame(data, columns=columns)
 print(df)
 
-data = [
+#Second way: dictionaries
+data2 = [
     {
         "Make": "Nissan",
         "Model": "Stanza",
@@ -69,3 +71,80 @@ data = [
         "MSRP": 32340
     }
 ]
+
+df2 = pd.DataFrame(data2)
+
+print(df2)
+
+#Selects the nth first rows
+print(df.head(n=2))
+
+print(df.Make)
+companies = df['Make']
+
+years = df.Year
+
+print(companies)
+print(years)
+
+#Select columns
+var1 = df[['Make','Transmission Type']]
+
+#Add a new  column and modify it
+df['id'] = ['29492','23913','01843','12931','2283']
+
+print(df)
+
+df['id'] = ['0','23913','01843','12931','2283']
+
+print(df)
+
+#Eliminate a column
+del df['id']
+print(df)
+
+
+#Obtain and modify row index
+df.index = ['a','b','c','d','e']
+print(df)
+
+#Obtain a column by its index (loc and iloc)
+print(df.loc['a'])
+print(df.iloc[0])
+
+#Reset the index without altering the original DataFrame
+print(df.reset_index(drop=True))
+print(df)
+
+#Element-wise operations
+print(df.Year - 2000)
+
+print(df['Year'] <= 2000)
+
+#Filtering DataFrames
+print(df[df['Year'] <= 2000])
+
+
+#Operation on the String (.str)
+df['Vehicle_Style'] = df['Vehicle_Style'].str.title()
+print(df['Vehicle_Style'])
+
+print( df.MSRP.min())
+
+print( df.describe().round(2))
+
+#Unique values in the DataFrame
+print(df.nunique())
+
+print(df.isnull())
+
+#SQL equivalent to grouping
+
+print(df.groupby('Transmission Type').MSRP.mean())
+
+#NumPy arrays
+print(df.MSRP.values)
+
+#Restores the original dictionary that was used to create the DataFrame
+df.to_dict(orient='records')
+
